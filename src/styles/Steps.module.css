@@ -34,7 +34,7 @@
   gap: 6px;
 }
 .step_child1>:nth-child(1) {
-  color: gray;
+  color:  hsl(231, 11%, 63%);
  
 }
 .step_child1>:nth-child(2) {

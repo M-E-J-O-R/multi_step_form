@@ -2,21 +2,35 @@ import style from '../styles/Steps.module.css';
 import StepItem from './StepItem';
 import { useState } from 'react';
 
-
+type StepType = {
+    num: string,
+    description: string,    
+}
 
 const Steps = () => {
     const [stepNo, setStepNo] = useState('1');
 
+    const stepsData:StepType[] = [
+        { num: '1', description: 'YOUR INFO' },
+        { num: '2', description: 'SELECT PLAN' },
+        { num: '3', description: 'ADD-ONS' },
+        { num: '4', description: 'SUMMARY' },
+    ]
+
     const handleClick = (num: string) => {
         setStepNo(prev => num);
-        console.log(stepNo);
-    };
+       };
     return (
         <nav className={style.nav_container} >
-            <StepItem num='1' description='YOUR INFO' stepNo={stepNo} handleClick={handleClick} />
-            <StepItem num='2' description='SELECT PLAN' stepNo={stepNo} handleClick={handleClick} />
-            <StepItem num='3' description='ADD-ONS' stepNo={stepNo} handleClick={handleClick} />
-            <StepItem num='4' description='SUMMARY' stepNo={stepNo} handleClick={handleClick} />
+
+            {stepsData.map((step) => (<StepItem
+                key={step.num}
+                num={step.num}
+                description={step.description}
+                stepNo={stepNo}
+                handleClick={handleClick}               
+            />))}
+          
         </nav>
     );
 };
