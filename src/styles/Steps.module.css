@@ -1,0 +1,42 @@
+.nav_container {
+  width: 280px;
+  height: 600px;
+  margin: 2rem;
+  background: url("../assets/images/bg-sidebar-desktop.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 12px;
+  padding: 2rem;
+}
+.step_card {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.step_no {
+  width: 50px;
+  height: 50px;
+  border: 1px solid white;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: white;
+  justify-content: center;
+}
+.step_child1 {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.step_child1>:nth-child(1) {
+  color: gray;
+ 
+}
+.step_child1>:nth-child(2) {
+  color: white;
+}
