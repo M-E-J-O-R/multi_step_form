@@ -1,15 +1,22 @@
 import style from '../styles/Steps.module.css';
 import StepItem from './StepItem';
-import img from '../assets/images/bg-sidebar-desktop.svg';
+import { useState } from 'react';
+
 
 
 const Steps = () => {
+    const [stepNo, setStepNo] = useState('1');
+
+    const handleClick = (num: string) => {
+        setStepNo(prev => num);
+        console.log(stepNo);
+    };
     return (
         <nav className={style.nav_container} >
-            <StepItem num='1' description='YOUR INFO' />
-            <StepItem num='2' description='SELECT PLAN' />
-            <StepItem num='3' description='ADD-ONS' />
-            <StepItem num='4' description='SUMMARY' />
+            <StepItem num='1' description='YOUR INFO' stepNo={stepNo} handleClick={handleClick} />
+            <StepItem num='2' description='SELECT PLAN' stepNo={stepNo} handleClick={handleClick} />
+            <StepItem num='3' description='ADD-ONS' stepNo={stepNo} handleClick={handleClick} />
+            <StepItem num='4' description='SUMMARY' stepNo={stepNo} handleClick={handleClick} />
         </nav>
     );
 };

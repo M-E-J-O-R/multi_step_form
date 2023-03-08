@@ -1,18 +1,16 @@
-import { useState } from 'react';
 import style from '../styles/Steps.module.css';
 
+type StepItemType = {
+    num: string,
+    description: string,
+    stepNo: string,
+    handleClick: (num: string) => void;
+};
 
 
 
+const StepItem = ({ num, description, stepNo, handleClick }: StepItemType) => {
 
-const StepItem = ({ num, description }: { num: string, description: string; }) => {
-    const [stepNo, setStepNo] = useState('1');
-
-    const handleClick = (num: string) => {
-        setStepNo(prev => num);
-        console.log(stepNo);
-        console.log(handleColorChange());
-    };
     const handleColorChange = () => {
         return num === stepNo ? {
             color: 'black',
@@ -26,7 +24,9 @@ const StepItem = ({ num, description }: { num: string, description: string; }) =
 
     return (
         <section className={style.step_card}>
-            <button onClick={() => handleClick(num)} className={style.step_no}>{num}</button>
+            <button onClick={() => handleClick(num)} className={style.step_no} style={handleColorChange()}>{num}
+            </button>
+            
             <section className={style.step_child1}>
                 <p>STEP {num}</p>
                 <p>{description}</p>
