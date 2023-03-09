@@ -1,10 +1,10 @@
 import style from '../styles/Steps.module.css';
 
 type StepItemType = {
-    num: string,
+    num: number,
     description: string,
-    stepNo: string,
-    handleClick: (num: string) => void;
+    stepNo: number,
+    handleClick: (num: number) => void;
 };
 
 

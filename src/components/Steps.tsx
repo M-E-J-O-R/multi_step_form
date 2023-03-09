@@ -3,23 +3,23 @@ import StepItem from './StepItem';
 import { useState } from 'react';
 
 type StepType = {
-    num: string,
-    description: string,    
-}
+    num: number,
+    description: string,
+};
 
 const Steps = () => {
-    const [stepNo, setStepNo] = useState('1');
+    const [stepNo, setStepNo] = useState(1);
 
-    const stepsData:StepType[] = [
-        { num: '1', description: 'YOUR INFO' },
-        { num: '2', description: 'SELECT PLAN' },
-        { num: '3', description: 'ADD-ONS' },
-        { num: '4', description: 'SUMMARY' },
-    ]
+    const stepsData: StepType[] = [
+        { num: 1, description: 'YOUR INFO' },
+        { num: 2, description: 'SELECT PLAN' },
+        { num: 3, description: 'ADD-ONS' },
+        { num: 4, description: 'SUMMARY' },
+    ];
 
-    const handleClick = (num: string) => {
+    const handleClick = (num: number) => {
         setStepNo(prev => num);
-       };
+    };
     return (
         <nav className={style.nav_container} >
 
@@ -28,9 +28,9 @@ const Steps = () => {
                 num={step.num}
                 description={step.description}
                 stepNo={stepNo}
-                handleClick={handleClick}               
+                handleClick={handleClick}
             />))}
-          
+
         </nav>
     );
 };

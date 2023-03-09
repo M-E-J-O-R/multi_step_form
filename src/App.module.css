@@ -13,3 +13,18 @@
   --alabaster: hsl(231, 100%, 99%);
   --white: hsl(0, 0%, 100%);
 }
+body {
+  background-color: var(--light-gray);
+}
+
+.App {
+  display: flex;
+  width: fit-content;
+  height: max-content;
+  gap: 6rem;
+  padding: 1rem 6rem 1rem 1rem;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 12px;
+}
