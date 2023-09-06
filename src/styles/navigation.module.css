@@ -20,6 +20,7 @@
   height: 40px;
   border-radius: 100%;
   color: white;
+  font-weight: bold;
   border: 1px solid white;
   display: flex;
   align-items: center;
@@ -31,4 +32,9 @@
 .nav_details {
   color: white;
   font-weight: bold;
+}
+.active_step {
+  background-color: var(--light-blue);
+  color: var(--marine-blue);
+  border: none;
 }
