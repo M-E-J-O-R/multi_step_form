@@ -1,0 +1,11 @@
+.home_container {
+  width: 900px;
+  min-height: 600px;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+  justify-content: center;
+}
