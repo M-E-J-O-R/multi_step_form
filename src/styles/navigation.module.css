@@ -38,3 +38,35 @@
   color: var(--marine-blue);
   border: none;
 }
+.footer_nav_container {
+  display: flex;
+  padding: 1rem 0;
+  justify-content: space-between;
+  align-items: center;
+  width: 420px;
+  margin-top: auto;
+}
+.next_step_btn,
+.previous_btn {
+  text-decoration: none;
+}
+.next_step_btn {
+  font-weight: 500;
+  color: white;
+  border: 0;
+  padding: 12px 24px;
+  background-color: var(--marine-blue);
+  border-radius: 6px;
+  margin-left: auto;
+}
+.previous_btn {
+  border: none;
+  background-color: transparent;
+  color: var(--cool-gray);
+  transition: color 1.1s;
+  padding: 16px 0px;
+  font-weight: bold;
+}
+.previous_btn:hover {
+  color: var(--marine-blue);
+}

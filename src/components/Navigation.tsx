@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import style from '../styles/navigation.module.css';
 import { Link } from 'react-router-dom';
-
+import { useState } from 'react';
 
 
 
@@ -11,13 +10,13 @@ interface NavItem {
     navDetails: string;
     path: string;
 }
+interface NavigationProps{
+    stepNum: number,
+    handleStepNo:(stepNo:number)=>void
+}
 
-const Navigation = () => {
-    const [stepNum, setStepNum] = useState(1);
-    const handleStepNo = (stepNo: number) => {
-        setStepNum(prev => stepNo);
-    };
-
+const Navigation = ({stepNum,handleStepNo}:NavigationProps) => {
+    
     const navData: NavItem[] = [
         {
             stepNo: 1,
@@ -41,7 +40,7 @@ const Navigation = () => {
             stepNo: 4,
             navStep: 'STEP 4',
             navDetails: 'SUMMARY',
-            path:''
+            path:'summary'
         },
     ];
     return (

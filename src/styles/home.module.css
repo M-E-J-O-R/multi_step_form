@@ -1,6 +1,6 @@
 .home_container {
   width: 900px;
-  min-height: 600px;
+  height: 600px;
   background-color: white;
   border-radius: 1rem;
   padding: 1rem;
@@ -10,9 +10,8 @@
 }
 
 .info_contanier {
-  width: 55%;
+  width: 420px;
   padding: 2.5rem 0 0 0;
-  height: 560px;
   font-weight: 480;
   display: flex;
   flex-direction: column;
@@ -56,7 +55,7 @@
   outline: none;
   transition: border-color 0.3s, color 0.3s;
 }
-.input_field:focus{
+.input_field:focus {
   border: 1px solid var(--marine-blue);
   color: var(--marine-blue);
 }
