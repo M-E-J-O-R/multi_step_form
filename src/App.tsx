@@ -10,7 +10,7 @@ import { useState } from 'react';
 function App() {
   const [stepNum, setStepNum] = useState(1);
   const handleStepNo = (stepNo: number) => {
-    setStepNum(prev => stepNo);
+    setStepNum(stepNo);
   };
   return (
     <div className='App'>
@@ -25,7 +25,7 @@ function App() {
 
           <FooterNav stepNum={stepNum} setStepNum={setStepNum} />
         </div>
-       
+
       </div>
 
 
