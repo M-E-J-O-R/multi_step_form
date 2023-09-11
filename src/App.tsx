@@ -5,12 +5,19 @@ import Navigation from './components/Navigation';
 import style from './styles/home.module.css';
 import FooterNav from './components/FooterNav';
 import { useState } from 'react';
+import Plan from './components/Plan';
 
 
 function App() {
   const [stepNum, setStepNum] = useState(1);
   const handleStepNo = (stepNo: number) => {
     setStepNum(stepNo);
+  };
+
+  const [checked, setChecked] = useState(false);
+
+  const handleToggle = () => {
+    setChecked(!checked);
   };
   return (
     <div className='App'>
@@ -19,6 +26,7 @@ function App() {
         <div className='content'>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='plan' element={<Plan checked={checked} handleToggle = {handleToggle} />} />
             <Route path='addons' element={<Home />} />
             <Route path='summary' element={<Home />} />
           </Routes>

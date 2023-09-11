@@ -46,7 +46,7 @@ const Navigation = ({stepNum,handleStepNo}:NavigationProps) => {
     return (
         <div className={style.navigation_container}>
             {navData.map((nav) =>
-                <Link to={nav.path} className={style.nav_child} onClick={() => handleStepNo(nav.stepNo)}>
+                <Link key={nav.path} to={nav.path} className={style.nav_child} onClick={() => handleStepNo(nav.stepNo)}>
                     <p className={`${style.nav_num} ${stepNum === nav.stepNo && `${style.active_step}`}`}>{nav.stepNo}</p>
                     <section>
                         <p className={style.nav_step}>{nav.navStep}</p>
