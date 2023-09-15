@@ -1,0 +1,14 @@
+.addons_container {
+  width: 100%;
+  height: 100%;
+  padding: 2.5rem 0 0 0;
+}
+.addons_heading {
+  color: var(--marine-blue);
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.addons_details {
+  color: var(--cool-gray);
+}

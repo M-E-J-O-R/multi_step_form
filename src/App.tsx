@@ -6,6 +6,7 @@ import style from './styles/home.module.css';
 import FooterNav from './components/FooterNav';
 import { useState } from 'react';
 import Plan from './components/Plan';
+import Addons from './components/Addons';
 
 
 function App() {
@@ -26,8 +27,8 @@ function App() {
         <div className='content'>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='plan' element={<Plan checked={checked} handleToggle = {handleToggle} />} />
-            <Route path='addons' element={<Home />} />
+            <Route path='plan' element={<Plan checked={checked} handleToggle={handleToggle} />} />
+            <Route path='addons' element={<Addons />} />
             <Route path='summary' element={<Home />} />
           </Routes>
 
