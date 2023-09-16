@@ -12,3 +12,15 @@
 .addons_details {
   color: var(--cool-gray);
 }
+.addon_card {
+  background-color: var(--magnolia);
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  border-radius: 8px;
+  gap: 1rem;
+}
+
+.addon_info{
+  margin:0 0 0 2rem;
+}
