@@ -7,6 +7,7 @@ import FooterNav from './components/FooterNav';
 import { useState } from 'react';
 import Plan from './components/Plan';
 import Addons from './components/Addons';
+import Summary from './components/Summary';
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='plan' element={<Plan checked={checked} handleToggle={handleToggle} />} />
             <Route path='addons' element={<Addons />} />
-            <Route path='summary' element={<Home />} />
+            <Route path='summary' element={<Summary />} />
           </Routes>
 
           <FooterNav stepNum={stepNum} setStepNum={setStepNum} />
