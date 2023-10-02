@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Plan from './components/Plan';
 import Addons from './components/Addons';
 import Summary from './components/Summary';
+import Congratulations from './components/Congratulations';
 
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='plan' element={<Plan checked={checked} handleToggle={handleToggle} />} />
             <Route path='addons' element={<Addons />} />
-            <Route path='summary' element={<Summary />} />
+            <Route path='summary' element={<Congratulations/>} />
           </Routes>
 
           <FooterNav stepNum={stepNum} setStepNum={setStepNum} />

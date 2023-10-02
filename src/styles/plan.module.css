@@ -18,7 +18,7 @@
   margin: 32px 0 0 0;
 }
 .plancard {
-  width: 140px;
+  width: 130px;
   min-height: 150px;
   height: fit-content;
   padding: 10px;
@@ -50,19 +50,19 @@
 .plan_bonus {
   color: var(--marine-blue);
   font-size: 0.8rem;
-  }
+}
 .plan_duration {
   width: 100%;
   background-color: var(--alabaster);
-  padding:6px;
+  padding: 6px;
   margin-top: 32px;
   border-radius: 8px;
   display: flex;
-  gap: 1rem ;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
 }
-.plan_duration>span{
+.plan_duration > span {
   color: var(--cool-gray);
   font-weight: bold;
 }

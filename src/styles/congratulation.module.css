@@ -1,0 +1,21 @@
+.congratulations_container {
+  width: 500px;
+  height: 100%;
+  display: flex;
+  padding-right: 4rem;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+.con_heading {
+  font-size: 1.8rem;
+  margin: 16px 0 0 0;
+  font-weight: bold;
+  color: var(--marine-blue);
+}
+.congratulations_message {
+  text-align: center;
+  color: var(--cool-gray);
+  font-weight: 500;
+}
