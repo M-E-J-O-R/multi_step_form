@@ -17,10 +17,10 @@ function App() {
     setStepNum(stepNo);
   };
 
-  const [checked, setChecked] = useState(false);
+  const [isChecked, setChecked] = useState(false);
 
   const handleToggle = () => {
-    setChecked(!checked);
+    setChecked(!isChecked);
   };
   return (
     <div className='App'>
@@ -29,9 +29,9 @@ function App() {
         <div className='content'>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='plan' element={<Plan checked={checked} handleToggle={handleToggle} />} />
-            <Route path='addons' element={<Addons />} />
-            <Route path='summary' element={<Congratulations/>} />
+            <Route path='plan' element={<Plan isChecked={isChecked} handleToggle={handleToggle} />} />
+            <Route path='addons' element={<Addons isChecked={isChecked} />} />
+            <Route path='summary' element={<Congratulations />} />
           </Routes>
 
           <FooterNav stepNum={stepNum} setStepNum={setStepNum} />

@@ -1,56 +1,75 @@
 import style from '../styles/plan.module.css';
 import arcade_logo from '../assets/images/icon-arcade.svg';
 import Switch from '@mui/material/Switch';
+import pro_logo from '../assets/images/icon-pro.svg';
+import advanced_logo from '../assets/images/icon-advanced.svg';
+import { useState } from 'react';
 
 interface PlanProps {
-    checked: boolean,
+    isChecked: boolean,
     handleToggle: () => void;
 }
+interface PlanData {
+    planName: string,
+    planLogo: typeof pro_logo,
+    planPricing: number,
+    planBonus: string,
+}
 
-const Plan = ({ checked, handleToggle }: PlanProps) => {
-
+const Plan = ({ isChecked, handleToggle }: PlanProps) => {
+    const planData: PlanData[] = [
+        {
+            planName: 'Acrade',
+            planLogo: arcade_logo,
+            planPricing: isChecked ? 90 : 9,
+            planBonus: '2 months free',
+        },
+        {
+            planName: 'Advanced',
+            planLogo: advanced_logo,
+            planPricing: isChecked ? 120 : 12,
+            planBonus: '2 months free',
+        },
+        {
+            planName: 'Pro',
+            planLogo: pro_logo,
+            planPricing: isChecked ? 150 : 15,
+            planBonus: '2 months free',
+        },
+    ];
     return (
         <div className={style.plan_container}>
             <p className={style.plan_heading}>Select your plan</p>
             <p className={style.plan_details}>You have option of monthly and yearly billing </p>
 
             <section className={style.plans_container}>
-                <div className={style.plancard} >
-                    <img src={arcade_logo} alt="" className={style.plan_icon} />
-                    <div>
-                        <p className={style.plan_name}>Arcade</p>
-                        <p className={style.plan_pricing}>$8/mo</p>
-                        <p className={style.plan_bonus}></p>
+                {planData.map((plan) =>
+                    <div className={style.plancard} key={plan.planName}>
+                        <img src={plan.planLogo} alt="" className={style.plan_icon} />
+                        <div>
+                            <p className={style.plan_name}>{plan.planName}</p>
+                            <p className={style.plan_pricing}>${plan.planPricing}/mo</p>
+                            <p className={style.plan_bonus}> {isChecked ? plan.planBonus : ''}</p>
+                        </div>
                     </div>
-                </div>
-                <div className={style.plancard} >
-                    <img src={arcade_logo} alt="" className={style.plan_icon} />
-                    <div>
-                        <p className={style.plan_name}>Arcade</p>
-                        <p className={style.plan_pricing}>$8/mo</p>
-                        <p className={style.plan_bonus}></p>
-                    </div>
-                </div>
-                <div className={style.plancard} >
-                    <img src={arcade_logo} alt="" className={style.plan_icon} />
-                    <div>
-                        <p className={style.plan_name}>Arcade</p>
-                        <p className={style.plan_pricing}>$8/mo</p>
-                        <p className={style.plan_bonus}></p>
-                    </div>
-                </div>
+
+
+                )}
+
+
+
             </section>
             <section className={style.plan_duration}>
-                <span style={{ color: !checked ? 'var(--marine-blue)' : 'var(--cool-gray)' }}>
+                <span style={{ color: !isChecked ? 'var(--marine-blue)' : 'var(--cool-gray)' }}>
                     Monthly
                 </span>
                 <Switch
-                    checked={checked}
+                    checked={isChecked}
                     onChange={handleToggle}
                     color="primary"
                 />
 
-                <span style={{ color: checked ? 'var(--marine-blue)' : 'var(--cool-gray)' }}>
+                <span style={{ color: isChecked ? 'var(--marine-blue)' : 'var(--cool-gray)' }}>
                     Yearly
                 </span>
 
