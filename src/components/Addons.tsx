@@ -46,7 +46,14 @@ const Addons = ({ isChecked }: AddonsProps) => {
         }
 
     };
-
+    const addonStyle = (plan: number) => {
+        if (selectedAddons.includes(plan)) {
+            return {
+                border: '1px solid var(--purplish-blue)',
+                backgroundColor: 'var(--magnolia)',
+            };
+        }
+    };
 
 
 
@@ -58,7 +65,13 @@ const Addons = ({ isChecked }: AddonsProps) => {
             <div className={style.addon_container}>
                 {
                     addonData.map((addon) =>
-                        <div key={addon.addonHeading} className={style.addon_card}>
+                        <div
+                            key={addon.addonHeading}
+                            className={style.addon_card}
+                            style={addonStyle(addon.id)}
+                        >
+
+
                             <section className={style.addon_info_card}>
                                 <input type="checkbox" className={style.addon_checkbox} value={addon.id} checked={selectedAddons.includes(addon.id)} onChange={(e) => handleChecked(e)} />
                                 <div className={style.addon_info

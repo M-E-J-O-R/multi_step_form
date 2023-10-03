@@ -18,10 +18,10 @@ interface PlanData {
 
 const Plan = ({ isChecked, handleToggle }: PlanProps) => {
 
-    const [selectedPlan, setSelectedPlan] = useState('');
+    const [selectedPlan, setSelectedPlan] = useState<PlanData>();
 
     const planStyle = (plan: string) => {
-        if (selectedPlan === plan) {
+        if (selectedPlan?.planName === plan) {
             return {
                 border: '1px solid var(--purplish-blue)',
                 backgroundColor: 'var(--magnolia)',
@@ -29,7 +29,7 @@ const Plan = ({ isChecked, handleToggle }: PlanProps) => {
         };
 
     };
-    const handleSelectedPlan = (plan: string) => {
+    const handleSelectedPlan = (plan: PlanData) => {
         setSelectedPlan(plan);
     };
     const planData: PlanData[] = [
@@ -62,7 +62,7 @@ const Plan = ({ isChecked, handleToggle }: PlanProps) => {
                     <div
                         className={style.plancard}
                         style={planStyle(plan.planName)}
-                        key={plan.planName} onClick={() => handleSelectedPlan(plan.planName)} >
+                        key={plan.planName} onClick={() => handleSelectedPlan(plan)} >
 
 
                         <img src={plan.planLogo} alt="" className={style.plan_icon} />
@@ -92,7 +92,7 @@ const Plan = ({ isChecked, handleToggle }: PlanProps) => {
                 <span style={{ color: isChecked ? 'var(--marine-blue)' : 'var(--cool-gray)' }}>
                     Yearly
                 </span>
-               
+
 
             </section>
 
