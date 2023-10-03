@@ -17,6 +17,21 @@ interface PlanData {
 }
 
 const Plan = ({ isChecked, handleToggle }: PlanProps) => {
+
+    const [selectedPlan, setSelectedPlan] = useState('');
+
+    const planStyle = (plan: string) => {
+        if (selectedPlan === plan) {
+            return {
+                border: '1px solid var(--purplish-blue)',
+                backgroundColor: 'var(--magnolia)',
+            };
+        };
+
+    };
+    const handleSelectedPlan = (plan: string) => {
+        setSelectedPlan(plan);
+    };
     const planData: PlanData[] = [
         {
             planName: 'Acrade',
@@ -44,7 +59,12 @@ const Plan = ({ isChecked, handleToggle }: PlanProps) => {
 
             <section className={style.plans_container}>
                 {planData.map((plan) =>
-                    <div className={style.plancard} key={plan.planName}>
+                    <div
+                        className={style.plancard}
+                        style={planStyle(plan.planName)}
+                        key={plan.planName} onClick={() => handleSelectedPlan(plan.planName)} >
+
+
                         <img src={plan.planLogo} alt="" className={style.plan_icon} />
                         <div>
                             <p className={style.plan_name}>{plan.planName}</p>
@@ -72,6 +92,7 @@ const Plan = ({ isChecked, handleToggle }: PlanProps) => {
                 <span style={{ color: isChecked ? 'var(--marine-blue)' : 'var(--cool-gray)' }}>
                     Yearly
                 </span>
+               
 
             </section>
 
