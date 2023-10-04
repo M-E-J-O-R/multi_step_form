@@ -10,6 +10,18 @@ import Addons from './components/Addons';
 import Summary from './components/Summary';
 import Congratulations from './components/Congratulations';
 
+type PlanType = {
+  plan: {
+    planName: string,
+    planPricing: number,
+  }[],
+  addon: {
+    id: number,
+    addonHeading: string,
+    addonInfo: string,
+    addonPricing: number;
+  }[];
+};
 
 function App() {
   const [stepNum, setStepNum] = useState(1);
@@ -17,6 +29,21 @@ function App() {
     setStepNum(stepNo);
   };
 
+  const [userInfo, setUserInfo] = useState({
+    name: '',
+    email: '',
+    telephone: '',
+  });
+
+
+  const handleUserInfo = (info: string, value: string) => {
+    setUserInfo((prevData) => ({ ...prevData, [info]: value }));
+  };
+
+  const [userPlan, setUserPlan] = useState<PlanType>({
+    plan: [],
+    addon: []
+  });
   const [isChecked, setChecked] = useState(false);
 
   const handleToggle = () => {
@@ -28,10 +55,10 @@ function App() {
         <Navigation stepNum={stepNum} handleStepNo={handleStepNo} />
         <div className='content'>
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<Home userInfo={userInfo} handleUserInfo={handleUserInfo} />} />
             <Route path='plan' element={<Plan isChecked={isChecked} handleToggle={handleToggle} />} />
             <Route path='addons' element={<Addons isChecked={isChecked} />} />
-            <Route path='summary' element={<Congratulations />} />
+            <Route path='summary' element={<Summary />} />
           </Routes>
 
           <FooterNav stepNum={stepNum} setStepNum={setStepNum} />

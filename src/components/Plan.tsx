@@ -3,7 +3,7 @@ import arcade_logo from '../assets/images/icon-arcade.svg';
 import Switch from '@mui/material/Switch';
 import pro_logo from '../assets/images/icon-pro.svg';
 import advanced_logo from '../assets/images/icon-advanced.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface PlanProps {
     isChecked: boolean,
@@ -26,12 +26,17 @@ const Plan = ({ isChecked, handleToggle }: PlanProps) => {
                 border: '1px solid var(--purplish-blue)',
                 backgroundColor: 'var(--magnolia)',
             };
-        };
+        } else {
+            return {};
+        }
 
     };
+
     const handleSelectedPlan = (plan: PlanData) => {
         setSelectedPlan(plan);
     };
+
+
     const planData: PlanData[] = [
         {
             planName: 'Acrade',
@@ -90,7 +95,9 @@ const Plan = ({ isChecked, handleToggle }: PlanProps) => {
                 />
 
                 <span style={{ color: isChecked ? 'var(--marine-blue)' : 'var(--cool-gray)' }}>
-                    Yearly
+                    Year
+
+                    <div>{selectedPlan?.planName}{selectedPlan?.planPricing}</div>
                 </span>
 
 

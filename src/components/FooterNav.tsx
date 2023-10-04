@@ -33,7 +33,8 @@ const FooterNav = ({ stepNum, setStepNum }: StepComponentProps) => {
             return '/';
         }
     };
-    console.log(pathChanger());
+   
+    
 
     // const [path, setPath] = useState('/');
     // useEffect(() => {

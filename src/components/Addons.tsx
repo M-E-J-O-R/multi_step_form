@@ -34,6 +34,8 @@ const Addons = ({ isChecked }: AddonsProps) => {
         },
     ];
     const [selectedAddons, setSelectedAddons] = useState<number[]>([]);
+
+    
     const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
         let isSelected: boolean = e.target.checked;
         let value: number = parseInt(e.target.value);
