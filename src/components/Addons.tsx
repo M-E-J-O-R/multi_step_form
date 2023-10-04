@@ -3,17 +3,41 @@ import { useState } from 'react';
 
 interface AddonsProps {
     isChecked: boolean;
-}
-type addonData =
-    {
-        id: number,
-        addonHeading: string,
-        addonInfo: string,
-        addonPricing: number;
+    userPlan: {
+        selectedPlan: {
+            planName: string,
+            planPricing: number,
+        },
+        selectedAddon: {
+            id: number,
+            addonHeading: string,
+            addonInfo: string,
+            addonPricing: number;
+        }[];
     };
+    setUserPlan: React.Dispatch<React.SetStateAction<{
+        selectedPlan: {
+            planName: string,
+            planPricing: number,
+        },
+        selectedAddon: {
+            id: number,
+            addonHeading: string,
+            addonInfo: string,
+            addonPricing: number;
+        }[];
+    }>>;
+}
+interface AddonData {
+    id: number,
+    addonHeading: string,
+    addonInfo: string,
+    addonPricing: number;
+};
 
-const Addons = ({ isChecked }: AddonsProps) => {
-    const addonData: addonData[] = [
+
+const Addons = ({ isChecked, userPlan, setUserPlan }: AddonsProps) => {
+    const addonData: AddonData[] = [
         {
             id: 1,
             addonHeading: 'Online services',
@@ -35,7 +59,7 @@ const Addons = ({ isChecked }: AddonsProps) => {
     ];
     const [selectedAddons, setSelectedAddons] = useState<number[]>([]);
 
-    
+
     const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
         let isSelected: boolean = e.target.checked;
         let value: number = parseInt(e.target.value);

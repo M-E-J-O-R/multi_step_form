@@ -11,11 +11,11 @@ import Summary from './components/Summary';
 import Congratulations from './components/Congratulations';
 
 type PlanType = {
-  plan: {
+  selectedPlan: {
     planName: string,
     planPricing: number,
-  }[],
-  addon: {
+  },
+  selectedAddon: {
     id: number,
     addonHeading: string,
     addonInfo: string,
@@ -24,6 +24,7 @@ type PlanType = {
 };
 
 function App() {
+
   const [stepNum, setStepNum] = useState(1);
   const handleStepNo = (stepNo: number) => {
     setStepNum(stepNo);
@@ -41,8 +42,11 @@ function App() {
   };
 
   const [userPlan, setUserPlan] = useState<PlanType>({
-    plan: [],
-    addon: []
+    selectedPlan: {
+      planName: '',
+      planPricing: 0,
+    },
+    selectedAddon: []
   });
   const [isChecked, setChecked] = useState(false);
 
@@ -56,8 +60,8 @@ function App() {
         <div className='content'>
           <Routes>
             <Route path='/' element={<Home userInfo={userInfo} handleUserInfo={handleUserInfo} />} />
-            <Route path='plan' element={<Plan isChecked={isChecked} handleToggle={handleToggle} />} />
-            <Route path='addons' element={<Addons isChecked={isChecked} />} />
+            <Route path='plan' element={<Plan isChecked={isChecked} handleToggle={handleToggle} userPlan={userPlan} setUserPlan={setUserPlan} />} />
+            <Route path='addons' element={<Addons isChecked={isChecked} userPlan={userPlan} setUserPlan={setUserPlan} />} />
             <Route path='summary' element={<Summary />} />
           </Routes>
 

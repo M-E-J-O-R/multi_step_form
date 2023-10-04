@@ -3,11 +3,35 @@ import arcade_logo from '../assets/images/icon-arcade.svg';
 import Switch from '@mui/material/Switch';
 import pro_logo from '../assets/images/icon-pro.svg';
 import advanced_logo from '../assets/images/icon-advanced.svg';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-interface PlanProps {
+interface UserPlanProps {
     isChecked: boolean,
     handleToggle: () => void;
+    userPlan: {
+        selectedPlan: {
+            planName: string,
+            planPricing: number,
+        },
+        selectedAddon: {
+            id: number,
+            addonHeading: string,
+            addonInfo: string,
+            addonPricing: number;
+        }[];
+    };
+    setUserPlan: React.Dispatch<React.SetStateAction<{
+        selectedPlan: {
+            planName: string,
+            planPricing: number,
+        },
+        selectedAddon: {
+            id: number,
+            addonHeading: string,
+            addonInfo: string,
+            addonPricing: number;
+        }[];
+    }>>;
 }
 interface PlanData {
     planName: string,
@@ -16,12 +40,10 @@ interface PlanData {
     planBonus: string,
 }
 
-const Plan = ({ isChecked, handleToggle }: PlanProps) => {
+const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan }: UserPlanProps) => {
 
-    const [selectedPlan, setSelectedPlan] = useState<PlanData>();
-
-    const planStyle = (plan: string) => {
-        if (selectedPlan?.planName === plan) {
+       const planStyle = (plan: string) => {
+        if (userPlan.selectedPlan?.planName === plan) {
             return {
                 border: '1px solid var(--purplish-blue)',
                 backgroundColor: 'var(--magnolia)',
@@ -33,7 +55,13 @@ const Plan = ({ isChecked, handleToggle }: PlanProps) => {
     };
 
     const handleSelectedPlan = (plan: PlanData) => {
-        setSelectedPlan(plan);
+        setUserPlan((prevUserPlan) => ({
+            ...prevUserPlan,
+            selectedPlan: {
+                planName: plan.planName,
+                planPricing: plan.planPricing
+            }
+        }));
     };
 
 
@@ -97,8 +125,9 @@ const Plan = ({ isChecked, handleToggle }: PlanProps) => {
                 <span style={{ color: isChecked ? 'var(--marine-blue)' : 'var(--cool-gray)' }}>
                     Year
 
-                    <div>{selectedPlan?.planName}{selectedPlan?.planPricing}</div>
                 </span>
+              
+
 
 
             </section>
