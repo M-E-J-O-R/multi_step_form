@@ -8,24 +8,14 @@ interface AddonsProps {
             planName: string,
             planPricing: number,
         },
-        selectedAddon: {
-            id: number,
-            addonHeading: string,
-            addonInfo: string,
-            addonPricing: number;
-        }[];
+        selectedAddon: number[];
     };
     setUserPlan: React.Dispatch<React.SetStateAction<{
         selectedPlan: {
             planName: string,
             planPricing: number,
         },
-        selectedAddon: {
-            id: number,
-            addonHeading: string,
-            addonInfo: string,
-            addonPricing: number;
-        }[];
+        selectedAddon: number[];
     }>>;
 }
 interface AddonData {
@@ -65,10 +55,17 @@ const Addons = ({ isChecked, userPlan, setUserPlan }: AddonsProps) => {
         let value: number = parseInt(e.target.value);
 
         if (isSelected) {
-            setSelectedAddons([...selectedAddons, value]);
+            setUserPlan((prevUserPlan) => ({
+                ...prevUserPlan,
+                selectedAddon: [...prevUserPlan.selectedAddon, value]
+            }));
         } else {
-            (setSelectedAddons((prevData) => prevData.filter((addon) => addon !== value))
-            );
+
+            setUserPlan((prevUserPlan) => ({
+                ...prevUserPlan,
+                selectedAddon: prevUserPlan.selectedAddon.filter((addon) => addon !== value)
+            }));
+
         }
 
     };
@@ -99,9 +96,13 @@ const Addons = ({ isChecked, userPlan, setUserPlan }: AddonsProps) => {
 
 
                             <section className={style.addon_info_card}>
-                                <input type="checkbox" className={style.addon_checkbox} value={addon.id} checked={selectedAddons.includes(addon.id)} onChange={(e) => handleChecked(e)} />
-                                <div className={style.addon_info
-                                }>
+                                <input type="checkbox"
+                                    className={style.addon_checkbox}
+                                    value={addon.id}
+                                    checked={userPlan.selectedAddon.includes(addon.id)}
+                                    onChange={(e) => handleChecked(e)} />
+
+                                <div className={style.addon_info}>
                                     <p>{addon.addonHeading}</p>
                                     <p>{addon.addonInfo}</p>
                                 </div>

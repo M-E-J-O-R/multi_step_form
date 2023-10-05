@@ -15,12 +15,7 @@ type PlanType = {
     planName: string,
     planPricing: number,
   },
-  selectedAddon: {
-    id: number,
-    addonHeading: string,
-    addonInfo: string,
-    addonPricing: number;
-  }[];
+  selectedAddon:number[];
 };
 
 function App() {

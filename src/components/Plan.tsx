@@ -13,24 +13,14 @@ interface UserPlanProps {
             planName: string,
             planPricing: number,
         },
-        selectedAddon: {
-            id: number,
-            addonHeading: string,
-            addonInfo: string,
-            addonPricing: number;
-        }[];
+        selectedAddon: number[];
     };
     setUserPlan: React.Dispatch<React.SetStateAction<{
         selectedPlan: {
             planName: string,
             planPricing: number,
         },
-        selectedAddon: {
-            id: number,
-            addonHeading: string,
-            addonInfo: string,
-            addonPricing: number;
-        }[];
+        selectedAddon: number[];
     }>>;
 }
 interface PlanData {
@@ -42,7 +32,7 @@ interface PlanData {
 
 const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan }: UserPlanProps) => {
 
-       const planStyle = (plan: string) => {
+    const planStyle = (plan: string) => {
         if (userPlan.selectedPlan?.planName === plan) {
             return {
                 border: '1px solid var(--purplish-blue)',
@@ -126,7 +116,7 @@ const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan }: UserPlanProps)
                     Year
 
                 </span>
-              
+
 
 
 
