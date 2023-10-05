@@ -70,7 +70,7 @@ const Addons = ({ isChecked, userPlan, setUserPlan }: AddonsProps) => {
 
     };
     const addonStyle = (plan: number) => {
-        if (selectedAddons.includes(plan)) {
+        if (userPlan.selectedAddon.includes(plan)) {
             return {
                 border: '1px solid var(--purplish-blue)',
                 backgroundColor: 'var(--magnolia)',
