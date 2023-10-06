@@ -29,7 +29,7 @@ const Summary = ({ userPlan, isChecked, addonData, planData }: SummaryProps) => 
     let userSelectedPlan = planData.filter((plan) => userPlan.selectedPlan.includes(plan.planName));
 
     const totalPrice = () => {
-        let planPrice = userSelectedPlan[0].planPricing;
+        let planPrice = userSelectedPlan[0]?.planPricing || 0;
         let totalPrice = userPlan.selectedAddon.reduce((totalPrice, addonId) => {
             const addon = addonData.find((addon) => addon.id === addonId);
             if (addon) {
