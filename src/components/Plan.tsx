@@ -107,6 +107,7 @@ const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan }: UserPlanProps)
                     Year
 
                 </span>
+               
 
 
 

@@ -10,23 +10,26 @@ type SummaryProps = {
         addonInfo: string,
         addonPricing: number;
     }[];
-
+    planData: {
+        planName: string,
+        planLogo: string,
+        planPricing: number,
+        planBonus: string,
+    }[];
     userPlan: {
-        selectedPlan: {
-            planName: string,
-            planPricing: number,
-        },
+        selectedPlan: string[],
         selectedAddon: number[];
     };
 
 };
 
 
-const Summary = ({ userPlan, isChecked, addonData }: SummaryProps) => {
+const Summary = ({ userPlan, isChecked, addonData, planData }: SummaryProps) => {
     let userSelectedAddon = addonData.filter((addons) => userPlan.selectedAddon.includes(addons.id));
+    let userSelectedPlan = planData.filter((plan) => userPlan.selectedPlan.includes(plan.planName));
 
     const totalPrice = () => {
-        let planPrice = userPlan.selectedPlan.planPricing;
+        let planPrice = userSelectedPlan[0].planPricing;
         let totalPrice = userPlan.selectedAddon.reduce((totalPrice, addonId) => {
             const addon = addonData.find((addon) => addon.id === addonId);
             if (addon) {
@@ -48,11 +51,11 @@ const Summary = ({ userPlan, isChecked, addonData }: SummaryProps) => {
             <div className={style.summary_child_container}>
                 <section className={style.user_plan}>
                     <div className={style.plan_child}>
-                        <p className={style.plan_heading_container}>{userPlan.selectedPlan?.planName} ({isChecked ? 'yearly' : 'monthly'})
+                        <p className={style.plan_heading_container}>{userSelectedPlan[0]?.planName} ({isChecked ? 'yearly' : 'monthly'})
                             <Link to='/plan' className={style.heading} >Change</Link>
                         </p>
 
-                        <p className={style.plan_heading}>${userPlan.selectedPlan?.planPricing}/{isChecked ? 'yr' : 'mo'}</p>
+                        <p className={style.plan_heading}>${userSelectedPlan[0]?.planPricing}/{isChecked ? 'yr' : 'mo'}</p>
                     </div>
                     <hr />
                     {userSelectedAddon.map((addon) =>

@@ -4,17 +4,11 @@ import { useState } from 'react';
 interface AddonsProps {
     isChecked: boolean;
     userPlan: {
-        selectedPlan: {
-            planName: string,
-            planPricing: number,
-        },
+        selectedPlan:string[],
         selectedAddon: number[];
     };
     setUserPlan: React.Dispatch<React.SetStateAction<{
-        selectedPlan: {
-            planName: string,
-            planPricing: number,
-        },
+        selectedPlan:string[],
         selectedAddon: number[];
     }>>;
 }
