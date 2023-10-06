@@ -9,10 +9,7 @@ interface UserPlanProps {
     isChecked: boolean,
     handleToggle: () => void;
     userPlan: {
-        selectedPlan: {
-            planName: string,
-            planPricing: number,
-        },
+        selectedPlan: string[],
         selectedAddon: number[];
     };
     setUserPlan: React.Dispatch<React.SetStateAction<{
