@@ -1,48 +1,26 @@
 import style from '../styles/addon.module.css';
-import { useState } from 'react';
 
 interface AddonsProps {
     isChecked: boolean;
+    addonData: {
+        id: number,
+        addonHeading: string,
+        addonInfo: string,
+        addonPricing: number;
+    }[];
     userPlan: {
-        selectedPlan:string[],
+        selectedPlan: string[],
         selectedAddon: number[];
     };
     setUserPlan: React.Dispatch<React.SetStateAction<{
-        selectedPlan:string[],
+        selectedPlan: string[],
         selectedAddon: number[];
     }>>;
 }
-interface AddonData {
-    id: number,
-    addonHeading: string,
-    addonInfo: string,
-    addonPricing: number;
-};
 
 
-const Addons = ({ isChecked, userPlan, setUserPlan }: AddonsProps) => {
-    const addonData: AddonData[] = [
-        {
-            id: 1,
-            addonHeading: 'Online services',
-            addonInfo: 'Access to multiple games',
-            addonPricing: isChecked ? 10 : 1,
-        },
-        {
-            id: 2,
-            addonHeading: 'Large storage',
-            addonInfo: 'Extra 1TB of cloud save',
-            addonPricing: isChecked ? 20 : 2,
-        },
-        {
-            id: 3,
-            addonHeading: 'Customizable profile',
-            addonInfo: 'Custom theme on your profile',
-            addonPricing: isChecked ? 20 : 2,
-        },
-    ];
+const Addons = ({ isChecked, userPlan, setUserPlan, addonData }: AddonsProps) => {
     
-
     const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
         let isSelected: boolean = e.target.checked;
         let value: number = parseInt(e.target.value);
@@ -101,7 +79,7 @@ const Addons = ({ isChecked, userPlan, setUserPlan }: AddonsProps) => {
                                 </div>
 
                             </section>
-                            <span className={style.addon_pricing}>${addon.addonPricing}/{ isChecked?'yr':'mo'}</span>
+                            <span className={style.addon_pricing}>${addon.addonPricing}/{isChecked ? 'yr' : 'mo'}</span>
                         </div>)
                 }
 

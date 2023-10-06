@@ -113,8 +113,11 @@ function App() {
         <div className='content'>
           <Routes>
             <Route path='/' element={<Home userInfo={userInfo} handleUserInfo={handleUserInfo} />} />
-            <Route path='plan' element={<Plan isChecked={isChecked} handleToggle={handleToggle} userPlan={userPlan} setUserPlan={setUserPlan} />} />
-            <Route path='addons' element={<Addons isChecked={isChecked} userPlan={userPlan} setUserPlan={setUserPlan} />} />
+
+            <Route path='plan' element={<Plan isChecked={isChecked} handleToggle={handleToggle} userPlan={userPlan} setUserPlan={setUserPlan} planData= {planData} />} />
+
+            <Route path='addons' element={<Addons isChecked={isChecked} userPlan={userPlan} setUserPlan={setUserPlan} addonData={addonData} />} />
+
             <Route path='summary' element={<Summary isChecked={isChecked} userPlan={userPlan} addonData={addonData} planData={planData} />} />
           </Routes>
 
