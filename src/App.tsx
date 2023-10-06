@@ -15,8 +15,16 @@ type PlanType = {
     planName: string,
     planPricing: number,
   },
-  selectedAddon:number[];
+  selectedAddon: number[];
 };
+
+interface AddonData {
+  id: number,
+  addonHeading: string,
+  addonInfo: string,
+  addonPricing: number;
+};
+
 
 function App() {
 
@@ -43,11 +51,35 @@ function App() {
     },
     selectedAddon: []
   });
+
+
   const [isChecked, setChecked] = useState(false);
 
   const handleToggle = () => {
     setChecked(!isChecked);
   };
+
+  const addonData: AddonData[] = [
+    {
+      id: 1,
+      addonHeading: 'Online services',
+      addonInfo: 'Access to multiple games',
+      addonPricing: isChecked ? 10 : 1,
+    },
+    {
+      id: 2,
+      addonHeading: 'Large storage',
+      addonInfo: 'Extra 1TB of cloud save',
+      addonPricing: isChecked ? 20 : 2,
+    },
+    {
+      id: 3,
+      addonHeading: 'Customizable profile',
+      addonInfo: 'Custom theme on your profile',
+      addonPricing: isChecked ? 20 : 2,
+    },
+  ];
+
   return (
     <div className='App'>
       <div className={style.home_container}>
@@ -57,7 +89,7 @@ function App() {
             <Route path='/' element={<Home userInfo={userInfo} handleUserInfo={handleUserInfo} />} />
             <Route path='plan' element={<Plan isChecked={isChecked} handleToggle={handleToggle} userPlan={userPlan} setUserPlan={setUserPlan} />} />
             <Route path='addons' element={<Addons isChecked={isChecked} userPlan={userPlan} setUserPlan={setUserPlan} />} />
-            <Route path='summary' element={<Summary />} />
+            <Route path='summary' element={<Summary isChecked={isChecked} userPlan={userPlan} addonData= {addonData} />} />
           </Routes>
 
           <FooterNav stepNum={stepNum} setStepNum={setStepNum} />

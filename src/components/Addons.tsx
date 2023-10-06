@@ -47,8 +47,7 @@ const Addons = ({ isChecked, userPlan, setUserPlan }: AddonsProps) => {
             addonPricing: isChecked ? 20 : 2,
         },
     ];
-    const [selectedAddons, setSelectedAddons] = useState<number[]>([]);
-
+    
 
     const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
         let isSelected: boolean = e.target.checked;
@@ -108,7 +107,7 @@ const Addons = ({ isChecked, userPlan, setUserPlan }: AddonsProps) => {
                                 </div>
 
                             </section>
-                            <span className={style.addon_pricing}>${addon.addonPricing}/mo</span>
+                            <span className={style.addon_pricing}>${addon.addonPricing}/{ isChecked?'yr':'mo'}</span>
                         </div>)
                 }
 
