@@ -1,26 +1,23 @@
 import style from '../styles/plan.module.css';
-import arcade_logo from '../assets/images/icon-arcade.svg';
 import Switch from '@mui/material/Switch';
 import pro_logo from '../assets/images/icon-pro.svg';
-import advanced_logo from '../assets/images/icon-advanced.svg';
-import React, { useEffect, useState } from 'react';
 
 interface UserPlanProps {
     isChecked: boolean,
+    planData: {
+        planName: string,
+        planLogo: typeof pro_logo,
+        planPricing: number,
+        planBonus: string,
+    }[]
     handleToggle: () => void;
     userPlan: {
-        selectedPlan: {
-            planName: string,
-            planPricing: number,
-        },
+        selectedPlan: string[],
         selectedAddon: number[];
     };
     setUserPlan: React.Dispatch<React.SetStateAction<{
-        selectedPlan: {
-            planName: string,
-            planPricing: number,
-        },
-        selectedAddon: number[];
+        selectedPlan:string[],
+        selectedAddon: number[]; 
     }>>;
 }
 interface PlanData {
@@ -30,10 +27,10 @@ interface PlanData {
     planBonus: string,
 }
 
-const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan }: UserPlanProps) => {
+const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan , planData}: UserPlanProps) => {
 
     const planStyle = (plan: string) => {
-        if (userPlan.selectedPlan?.planName === plan) {
+        if (userPlan.selectedPlan?.[0] === plan) {
             return {
                 border: '1px solid var(--purplish-blue)',
                 backgroundColor: 'var(--magnolia)',
@@ -47,34 +44,10 @@ const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan }: UserPlanProps)
     const handleSelectedPlan = (plan: PlanData) => {
         setUserPlan((prevUserPlan) => ({
             ...prevUserPlan,
-            selectedPlan: {
-                planName: plan.planName,
-                planPricing: plan.planPricing
-            }
+            selectedPlan:[plan.planName]
         }));
     };
 
-
-    const planData: PlanData[] = [
-        {
-            planName: 'Acrade',
-            planLogo: arcade_logo,
-            planPricing: isChecked ? 90 : 9,
-            planBonus: '2 months free',
-        },
-        {
-            planName: 'Advanced',
-            planLogo: advanced_logo,
-            planPricing: isChecked ? 120 : 12,
-            planBonus: '2 months free',
-        },
-        {
-            planName: 'Pro',
-            planLogo: pro_logo,
-            planPricing: isChecked ? 150 : 15,
-            planBonus: '2 months free',
-        },
-    ];
     return (
         <div className={style.plan_container}>
             <p className={style.plan_heading}>Select your plan</p>
@@ -114,11 +87,7 @@ const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan }: UserPlanProps)
 
                 <span style={{ color: isChecked ? 'var(--marine-blue)' : 'var(--cool-gray)' }}>
                     Year
-
-                </span>
-
-
-
+                </span>            
 
             </section>
 

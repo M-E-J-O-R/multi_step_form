@@ -10,13 +10,22 @@ import Addons from './components/Addons';
 import Summary from './components/Summary';
 import Congratulations from './components/Congratulations';
 
+import pro_logo from './assets/images/icon-pro.svg';
+import advanced_logo from './assets/images/icon-advanced.svg';
+import arcade_logo from './assets/images/icon-arcade.svg';
+
 type PlanType = {
-  selectedPlan: {
-    planName: string,
-    planPricing: number,
-  },
+  selectedPlan: string[],
   selectedAddon: number[];
 };
+
+interface PlanData {
+  planName: string,
+  planLogo: typeof pro_logo,
+  planPricing: number,
+  planBonus: string,
+}
+
 
 interface AddonData {
   id: number,
@@ -45,10 +54,7 @@ function App() {
   };
 
   const [userPlan, setUserPlan] = useState<PlanType>({
-    selectedPlan: {
-      planName: '',
-      planPricing: 0,
-    },
+    selectedPlan: [],
     selectedAddon: []
   });
 
@@ -59,6 +65,26 @@ function App() {
     setChecked(!isChecked);
   };
 
+  const planData: PlanData[] = [
+    {
+      planName: 'Acrade',
+      planLogo: arcade_logo,
+      planPricing: isChecked ? 90 : 9,
+      planBonus: '2 months free',
+    },
+    {
+      planName: 'Advanced',
+      planLogo: advanced_logo,
+      planPricing: isChecked ? 120 : 12,
+      planBonus: '2 months free',
+    },
+    {
+      planName: 'Pro',
+      planLogo: pro_logo,
+      planPricing: isChecked ? 150 : 15,
+      planBonus: '2 months free',
+    },
+  ];
   const addonData: AddonData[] = [
     {
       id: 1,
@@ -87,9 +113,12 @@ function App() {
         <div className='content'>
           <Routes>
             <Route path='/' element={<Home userInfo={userInfo} handleUserInfo={handleUserInfo} />} />
-            <Route path='plan' element={<Plan isChecked={isChecked} handleToggle={handleToggle} userPlan={userPlan} setUserPlan={setUserPlan} />} />
-            <Route path='addons' element={<Addons isChecked={isChecked} userPlan={userPlan} setUserPlan={setUserPlan} />} />
-            <Route path='summary' element={<Summary isChecked={isChecked} userPlan={userPlan} addonData= {addonData} />} />
+
+            <Route path='plan' element={<Plan isChecked={isChecked} handleToggle={handleToggle} userPlan={userPlan} setUserPlan={setUserPlan} planData= {planData} />} />
+
+            <Route path='addons' element={<Addons isChecked={isChecked} userPlan={userPlan} setUserPlan={setUserPlan} addonData={addonData} />} />
+
+            <Route path='summary' element={<Summary isChecked={isChecked} userPlan={userPlan} addonData={addonData} planData={planData} />} />
           </Routes>
 
           <FooterNav stepNum={stepNum} setStepNum={setStepNum} />
