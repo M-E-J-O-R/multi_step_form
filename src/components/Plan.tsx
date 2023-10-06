@@ -9,17 +9,11 @@ interface UserPlanProps {
     isChecked: boolean,
     handleToggle: () => void;
     userPlan: {
-        selectedPlan: {
-            planName: string,
-            planPricing: number,
-        },
+        selectedPlan: string[],
         selectedAddon: number[];
     };
     setUserPlan: React.Dispatch<React.SetStateAction<{
-        selectedPlan: {
-            planName: string,
-            planPricing: number,
-        },
+        selectedPlan:string[],
         selectedAddon: number[];
     }>>;
 }
@@ -47,11 +41,12 @@ const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan }: UserPlanProps)
     const handleSelectedPlan = (plan: PlanData) => {
         setUserPlan((prevUserPlan) => ({
             ...prevUserPlan,
-            selectedPlan: {
-                planName: plan.planName,
-                planPricing: plan.planPricing
-            }
+            selectedPlan: plan
+            // planName: plan.planName,
+            // planPricing: plan.planPricing
+
         }));
+
     };
 
 
@@ -117,7 +112,8 @@ const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan }: UserPlanProps)
 
                 </span>
 
-
+                <>{console.log(userPlan.selectedPlan.planPricing, 'kkkkkkk')}</>
+                <>{ console.log(planData[0].planPricing)}</>
 
 
             </section>
