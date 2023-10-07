@@ -123,7 +123,7 @@ function App() {
             <Route path='congratulations' element={<Congratulations />} />
           </Routes>
 
-          <FooterNav stepNum={stepNum} setStepNum={setStepNum} />
+          <FooterNav stepNum={stepNum} setStepNum={setStepNum} userPlan= {userPlan} />
         </div>
 
       </div>
