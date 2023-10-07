@@ -14,11 +14,6 @@ import pro_logo from './assets/images/icon-pro.svg';
 import advanced_logo from './assets/images/icon-advanced.svg';
 import arcade_logo from './assets/images/icon-arcade.svg';
 
-// Define types and interfaces for better code readability
-type PlanType = {
-  selectedPlan: string[],
-  selectedAddon: number[];
-};
 
 interface PlanData {
   planName: string,
@@ -60,12 +55,24 @@ function App() {
     setUserInfo((prevData) => ({ ...prevData, [info]: value }));
   };
 
-  const [userPlan, setUserPlan] = useState<PlanType>({
-    selectedPlan: [],
-    selectedAddon: []
+
+  const [userPlan, setUserPlan] = useState(() => {
+    const savedUserPlan = localStorage.getItem('userPlan');
+    return savedUserPlan ? JSON.parse(savedUserPlan) : { selectedPlan: [], selectedAddon: [] };
+  });
+  // Save userPlan to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('userPlan', JSON.stringify(userPlan));
+  }, [userPlan]);
+
+  const [isChecked, setChecked] = useState(() => {
+    const savedIsChecked = localStorage.getItem('isChecked');
+    return savedIsChecked ? savedIsChecked === 'true' : false; // Default to false if not found in localStorage
   });
 
-  const [isChecked, setChecked] = useState(false);
+  useEffect(() => {
+    localStorage.setItem('isChecked', isChecked.toString());
+  }, [isChecked]);
 
   const handleToggle = () => {
     setChecked(!isChecked);
