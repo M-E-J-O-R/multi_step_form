@@ -1,5 +1,6 @@
 import style from '../styles/addon.module.css';
 
+// Define props interface for Addons component
 interface AddonsProps {
     isChecked: boolean;
     addonData: {
@@ -18,28 +19,28 @@ interface AddonsProps {
     }>>;
 }
 
-
 const Addons = ({ isChecked, userPlan, setUserPlan, addonData }: AddonsProps) => {
-    
+    // Handle checkbox change
     const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
         let isSelected: boolean = e.target.checked;
         let value: number = parseInt(e.target.value);
 
         if (isSelected) {
+            // Add addon to selected addons
             setUserPlan((prevUserPlan) => ({
                 ...prevUserPlan,
                 selectedAddon: [...prevUserPlan.selectedAddon, value]
             }));
         } else {
-
+            // Remove addon from selected addons
             setUserPlan((prevUserPlan) => ({
                 ...prevUserPlan,
                 selectedAddon: prevUserPlan.selectedAddon.filter((addon) => addon !== value)
             }));
-
         }
-
     };
+
+    // Define the addon style
     const addonStyle = (plan: number) => {
         if (userPlan.selectedAddon.includes(plan)) {
             return {
@@ -48,8 +49,6 @@ const Addons = ({ isChecked, userPlan, setUserPlan, addonData }: AddonsProps) =>
             };
         }
     };
-
-
 
     return (
         <div className={style.addons_parent_container}>
@@ -64,25 +63,23 @@ const Addons = ({ isChecked, userPlan, setUserPlan, addonData }: AddonsProps) =>
                             className={style.addon_card}
                             style={addonStyle(addon.id)}
                         >
-
-
                             <section className={style.addon_info_card}>
-                                <input type="checkbox"
+                                <input
+                                    type="checkbox"
                                     className={style.addon_checkbox}
                                     value={addon.id}
                                     checked={userPlan.selectedAddon.includes(addon.id)}
-                                    onChange={(e) => handleChecked(e)} />
-
+                                    onChange={(e) => handleChecked(e)}
+                                />
                                 <div className={style.addon_info}>
                                     <p>{addon.addonHeading}</p>
                                     <p>{addon.addonInfo}</p>
                                 </div>
-
                             </section>
                             <span className={style.addon_pricing}>${addon.addonPricing}/{isChecked ? 'yr' : 'mo'}</span>
-                        </div>)
+                        </div>
+                    )
                 }
-
             </div>
         </div>
     );

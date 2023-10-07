@@ -2,6 +2,7 @@ import style from '../styles/plan.module.css';
 import Switch from '@mui/material/Switch';
 import pro_logo from '../assets/images/icon-pro.svg';
 
+// Define props interface for Plan component
 interface UserPlanProps {
     isChecked: boolean,
     planData: {
@@ -9,15 +10,15 @@ interface UserPlanProps {
         planLogo: typeof pro_logo,
         planPricing: number,
         planBonus: string,
-    }[]
+    }[];
     handleToggle: () => void;
     userPlan: {
         selectedPlan: string[],
         selectedAddon: number[];
     };
     setUserPlan: React.Dispatch<React.SetStateAction<{
-        selectedPlan:string[],
-        selectedAddon: number[]; 
+        selectedPlan: string[],
+        selectedAddon: number[];
     }>>;
 }
 interface PlanData {
@@ -27,8 +28,8 @@ interface PlanData {
     planBonus: string,
 }
 
-const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan , planData}: UserPlanProps) => {
-
+const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan, planData }: UserPlanProps) => {
+    // Define the style for the selected plan
     const planStyle = (plan: string) => {
         if (userPlan.selectedPlan?.[0] === plan) {
             return {
@@ -38,29 +39,29 @@ const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan , planData}: User
         } else {
             return {};
         }
-
     };
 
+    // Handle the selection of a plan
     const handleSelectedPlan = (plan: PlanData) => {
         setUserPlan((prevUserPlan) => ({
             ...prevUserPlan,
-            selectedPlan:[plan.planName]
+            selectedPlan: [plan.planName]
         }));
     };
 
     return (
         <div className={style.plan_container}>
             <p className={style.plan_heading}>Select your plan</p>
-            <p className={style.plan_details}>You have option of monthly and yearly billing </p>
+            <p className={style.plan_details}>You have the option of monthly and yearly billing</p>
 
             <section className={style.plans_container}>
                 {planData.map((plan) =>
                     <div
                         className={style.plancard}
                         style={planStyle(plan.planName)}
-                        key={plan.planName} onClick={() => handleSelectedPlan(plan)} >
-
-
+                        key={plan.planName}
+                        onClick={() => handleSelectedPlan(plan)}
+                    >
                         <img src={plan.planLogo} alt="" className={style.plan_icon} />
                         <div>
                             <p className={style.plan_name}>{plan.planName}</p>
@@ -68,12 +69,7 @@ const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan , planData}: User
                             <p className={style.plan_bonus}> {isChecked ? plan.planBonus : ''}</p>
                         </div>
                     </div>
-
-
                 )}
-
-
-
             </section>
             <section className={style.plan_duration}>
                 <span style={{ color: !isChecked ? 'var(--marine-blue)' : 'var(--cool-gray)' }}>
@@ -84,14 +80,10 @@ const Plan = ({ isChecked, handleToggle, userPlan, setUserPlan , planData}: User
                     onChange={handleToggle}
                     color="primary"
                 />
-
                 <span style={{ color: isChecked ? 'var(--marine-blue)' : 'var(--cool-gray)' }}>
                     Year
-                </span>            
-
+                </span>
             </section>
-
-
         </div>
     );
 };

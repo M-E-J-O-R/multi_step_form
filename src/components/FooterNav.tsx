@@ -32,17 +32,23 @@ const FooterNav = ({ stepNum, setStepNum, userPlan }: StepComponentProps) => {
         setStepNum(prev => prev - 1);
         navigate(-1);
     };
-    const handleBtnStyle = () => {
-        return stepNum === 1 ? { display: 'none' } : {};
+    const handleBtnStyle = (stepNo: number, ...args: number[]) => {
+        return args.includes(stepNo) ? { display: 'none' } : {};
     };
 
     return (
         <div className={style.footer_nav_container}>
-            <button style={handleBtnStyle()} className={style.previous_btn} onClick={handlePrevBtn}>Go Back</button>
+            <button style={handleBtnStyle(stepNum, 1, 5)} className={style.previous_btn} onClick={handlePrevBtn}>Go Back</button>
 
-            <button className={style.next_step_btn} onClick={handleNextBtn} disabled={stepNum === 2 && !isPlanChosen}>
+            <button
+                className={style.next_step_btn}
+                style={handleBtnStyle(stepNum, 5)}
+                onClick={handleNextBtn}
+                disabled={stepNum === 2 && !isPlanChosen}>
                 {stepNum !== 4 ? 'Next Step' : 'Confirm'}
+
             </button>
+            <>{console.log(stepNum)}</>
 
         </div>
     );

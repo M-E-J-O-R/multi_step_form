@@ -2,6 +2,7 @@ import style from '../styles/congratulation.module.css';
 import congratulationIcon from '../assets/images/icon-thank-you.svg';
 
 const Congratulations = () => {
+
     return (
         <div className={style.congratulations_container}>
             <img src={congratulationIcon} alt="" />

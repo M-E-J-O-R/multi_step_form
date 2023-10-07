@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Navigation from './components/Navigation';
 import style from './styles/home.module.css';
 import FooterNav from './components/FooterNav';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Plan from './components/Plan';
 import Addons from './components/Addons';
 import Summary from './components/Summary';
@@ -14,6 +14,7 @@ import pro_logo from './assets/images/icon-pro.svg';
 import advanced_logo from './assets/images/icon-advanced.svg';
 import arcade_logo from './assets/images/icon-arcade.svg';
 
+// Define types and interfaces for better code readability
 type PlanType = {
   selectedPlan: string[],
   selectedAddon: number[];
@@ -26,7 +27,6 @@ interface PlanData {
   planBonus: string,
 }
 
-
 interface AddonData {
   id: number,
   addonHeading: string,
@@ -34,10 +34,18 @@ interface AddonData {
   addonPricing: number;
 };
 
-
 function App() {
+  // Initialize state for step number and save it to localStorage
+  const [stepNum, setStepNum] = useState(() => {
+    const savedStepNum = localStorage.getItem('stepNum');
+    return savedStepNum ? parseInt(savedStepNum) : 1; // Default to 1 if not found in localStorage
+  });
 
-  const [stepNum, setStepNum] = useState(1);
+  // Save stepNum to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('stepNum', stepNum.toString());
+  }, [stepNum]);
+
   const handleStepNo = (stepNo: number) => {
     setStepNum(stepNo);
   };
@@ -48,7 +56,6 @@ function App() {
     telephone: '',
   });
 
-
   const handleUserInfo = (info: string, value: string) => {
     setUserInfo((prevData) => ({ ...prevData, [info]: value }));
   };
@@ -57,7 +64,6 @@ function App() {
     selectedPlan: [],
     selectedAddon: []
   });
-
 
   const [isChecked, setChecked] = useState(false);
 
@@ -85,6 +91,7 @@ function App() {
       planBonus: '2 months free',
     },
   ];
+
   const addonData: AddonData[] = [
     {
       id: 1,
@@ -109,28 +116,21 @@ function App() {
   return (
     <div className='App'>
       <div className={style.home_container}>
+        {/* Navigation component */}
         <Navigation stepNum={stepNum} handleStepNo={handleStepNo} />
         <div className='content'>
           <Routes>
+            {/* Define routes for different pages */}
             <Route path='/' element={<Home userInfo={userInfo} handleUserInfo={handleUserInfo} />} />
-
             <Route path='plan' element={<Plan isChecked={isChecked} handleToggle={handleToggle} userPlan={userPlan} setUserPlan={setUserPlan} planData={planData} />} />
-
             <Route path='addons' element={<Addons isChecked={isChecked} userPlan={userPlan} setUserPlan={setUserPlan} addonData={addonData} />} />
-
             <Route path='summary' element={<Summary isChecked={isChecked} userPlan={userPlan} addonData={addonData} planData={planData} />} />
-
             <Route path='congratulations' element={<Congratulations />} />
           </Routes>
-
-          <FooterNav stepNum={stepNum} setStepNum={setStepNum} userPlan= {userPlan} />
+          {/* Footer navigation component */}
+          <FooterNav stepNum={stepNum} setStepNum={setStepNum} userPlan={userPlan} />
         </div>
-
       </div>
-
-
-
-
     </div>
   );
 }
