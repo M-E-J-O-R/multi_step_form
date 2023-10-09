@@ -13,6 +13,7 @@ import Congratulations from './components/Congratulations';
 import pro_logo from './assets/images/icon-pro.svg';
 import advanced_logo from './assets/images/icon-advanced.svg';
 import arcade_logo from './assets/images/icon-arcade.svg';
+import ErrorPage from './components/ErrorPage';
 
 
 interface PlanData {
@@ -129,6 +130,7 @@ function App() {
             <Route path='addons' element={<Addons isChecked={isChecked} userPlan={userPlan} setUserPlan={setUserPlan} addonData={addonData} />} />
             <Route path='summary' element={<Summary isChecked={isChecked} userPlan={userPlan} addonData={addonData} planData={planData} />} />
             <Route path='congratulations' element={<Congratulations />} />
+            <Route path='*' element={<ErrorPage/>} />
           </Routes>
           {/* Footer navigation component */}
           <FooterNav stepNum={stepNum} setStepNum={setStepNum} userPlan={userPlan} />
