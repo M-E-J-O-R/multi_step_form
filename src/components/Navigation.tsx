@@ -10,7 +10,7 @@ const Navigation = ({ stepNum }: NavigationProps) => {
         <div className={style.navigation_container}>
 
             {navData.map((nav) => (
-                <p className={style.nav_child}>
+                <div className={style.nav_child} key={nav.navStep}>
                     <p
                         className={`${style.nav_num}
                          ${stepNum === nav.stepNo ? style.active_step : ''
@@ -22,7 +22,7 @@ const Navigation = ({ stepNum }: NavigationProps) => {
                         <p className={style.nav_step}>{nav.navStep}</p>
                         <p className={style.nav_details}>{nav.navDetails}</p>
                     </section>
-                </p>
+                </div>
             ))}
         </div>
     );
