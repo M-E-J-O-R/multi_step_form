@@ -41,10 +41,6 @@ function App() {
     localStorage.setItem('stepNum', stepNum.toString());
   }, [stepNum]);
 
-  const handleStepNo = (stepNo: number) => {
-    setStepNum(stepNo);
-  };
-
   const [userInfo, setUserInfo] = useState({
     name: '',
     email: '',
@@ -124,7 +120,7 @@ function App() {
     <div className='App'>
       <div className={style.home_container}>
         {/* Navigation component */}
-        <Navigation stepNum={stepNum} handleStepNo={handleStepNo} />
+        <Navigation stepNum={stepNum} />
         <div className='content'>
           <Routes>
             {/* Define routes for different pages */}
