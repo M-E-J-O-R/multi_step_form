@@ -1,5 +1,5 @@
 import style from '../styles/navigation.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { navData } from '../data/navigationData'; // Import the navData array
 
 interface NavigationProps {
@@ -8,8 +8,12 @@ interface NavigationProps {
 }
 
 const Navigation = ({ stepNum, handleStepNo }: NavigationProps) => {
+
+    const location = useLocation();
+    const currentPath = window.location.href;
     return (
         <div className={style.navigation_container}>
+            <>{console.log(currentPath)}</>
             {navData.map((nav) => (
                 <Link
                     key={nav.path}

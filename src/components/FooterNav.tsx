@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import style from '../styles/navigation.module.css';
 
 interface StepComponentProps {
@@ -12,6 +12,7 @@ interface StepComponentProps {
 
 const FooterNav = ({ stepNum, setStepNum, userPlan }: StepComponentProps) => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     // Check if a plan has been chosen
     const isPlanChosen: boolean = userPlan.selectedPlan.length > 0;
@@ -46,6 +47,27 @@ const FooterNav = ({ stepNum, setStepNum, userPlan }: StepComponentProps) => {
         // Use navigate(-1) to go back to the previous route
         navigate(-1);
     };
+
+
+    switch (location.pathname) {
+        case '/':
+            setStepNum(1);
+            break;
+        case 'plan':
+            setStepNum(2);
+            break;
+        case 'addons':
+            setStepNum(3);
+            break;
+        case 'summary':
+            setStepNum(4);
+            break;
+        case 'congratulations':
+            setStepNum(5);
+            break;
+        default:
+            break;
+    }
 
     // Determine the button style based on the step
     const handleBtnStyle = (stepNo: number, ...args: number[]) => {
