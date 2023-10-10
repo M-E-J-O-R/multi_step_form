@@ -133,7 +133,7 @@ function App() {
             <Route path='*' element={<ErrorPage/>} />
           </Routes>
           {/* Footer navigation component */}
-          <FooterNav stepNum={stepNum} setStepNum={setStepNum} userPlan={userPlan} />
+          <FooterNav stepNum={stepNum} setStepNum={setStepNum} userPlan={userPlan} userInfo={ userInfo} />
         </div>
       </div>
     </div>

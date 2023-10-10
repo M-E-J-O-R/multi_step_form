@@ -8,9 +8,14 @@ interface StepComponentProps {
     };
     stepNum: number;
     setStepNum: React.Dispatch<React.SetStateAction<number>>;
+    userInfo: {
+        name: string,
+        email: string,
+        telephone: string,
+    };
 }
 
-const FooterNav = ({ stepNum, setStepNum, userPlan }: StepComponentProps) => {
+const FooterNav = ({ stepNum, setStepNum, userPlan, userInfo }: StepComponentProps) => {
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -90,7 +95,7 @@ const FooterNav = ({ stepNum, setStepNum, userPlan }: StepComponentProps) => {
                 className={style.next_step_btn}
                 style={handleBtnStyle(stepNum, 5)}
                 onClick={handleNextBtn}
-                disabled={stepNum === 2 && !isPlanChosen}
+                disabled={(stepNum === 2 && !isPlanChosen)|| (stepNum===1 && (!userInfo.name || !userInfo.email || !userInfo.telephone))}
             >
                 {stepNum !== 4 ? 'Next Step' : 'Confirm'}
             </button>
