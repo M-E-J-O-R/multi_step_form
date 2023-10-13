@@ -10,23 +10,18 @@
   --alabaster: hsl(231, 100%, 99%);
   --white: hsl(0, 0%, 100%);
 }
-
+body{
+   background-color: var(--magnolia);
+}
   
 .App {
   width: 100vw;
-  min-height: 100vh;
-  background-color: var(--magnolia);
+  min-height: 100vh; 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 }
-.content{
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  }
 
-  @media only screen and (max-width:815px){
-    
-  }
+

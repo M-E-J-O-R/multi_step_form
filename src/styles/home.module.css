@@ -8,6 +8,11 @@
   gap: 5rem;
   align-items: center;
 }
+.content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
 .info_contanier {
   width: 420px;
@@ -61,9 +66,24 @@
 }
 @media only screen and (max-width: 820px) {
   .home_container {
-    border: 1px solid red;
     flex-direction: column;
+    gap: 0rem;
     width: 80vw;
-   
+    border: 1px solid red;
+    background-color: transparent;
+  }
+  .content {
+    width: 486px;
+    height: 435px;
+    background-color: white;
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid purple;
+    position: relative;
+    z-index: 2;
+    top: 75px;
+  }
+  .info_contanier {
+    padding: 0;
   }
 }

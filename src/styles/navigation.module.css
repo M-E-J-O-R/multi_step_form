@@ -73,9 +73,10 @@
 @media only screen and (max-width: 820px) {
   .navigation_container {
     width: 100vw;
-    height: 200px;
+    height: 250px;
     background-image: url(../assets/images/bg-sidebar-mobile.svg);
     flex-direction: row;
+    align-items: flex-start;
     position: absolute;
     top: 0;
     left: 0;
@@ -83,6 +84,15 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
+  }
+  .footer_nav_container {
+    width: 100vw;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin-top: 0;
+    padding: 8px 32px;
+   
   }
 }

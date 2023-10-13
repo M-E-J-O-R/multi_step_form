@@ -122,7 +122,7 @@ function App() {
       <div className={style.home_container}>
         {/* Navigation component */}
         <Navigation stepNum={stepNum} />
-        <div className='content'>
+        <div className={style.content}>
           <Routes>
             {/* Define routes for different pages */}
             <Route path='/' element={<Home userInfo={userInfo} handleUserInfo={handleUserInfo} />} />
